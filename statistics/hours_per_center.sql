@@ -6,7 +6,7 @@ select
     TRUE as toolbar;
 select 
 	i.INSTALLATIONNAME as x,
-	((strftime('%s', EXITTIME) - strftime('%s', ARRIVALTIME)) / 3600.0) as y 
+	sum(((strftime('%s', EXITTIME) - strftime('%s', ARRIVALTIME)) / 3600.0)) as y 
 	from reports r
 	join TICKETS t on t.TICKETID = r.TICKETID
 	join INSTALLATIONS i on i.INSTALLATIONID = t.INSTALLATION
