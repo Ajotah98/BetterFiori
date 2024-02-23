@@ -1,0 +1,1 @@
+ALTER TABLE shell ADD COLUMN layout TEXT;
