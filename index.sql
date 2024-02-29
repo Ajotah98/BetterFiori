@@ -19,7 +19,8 @@ select
         else 'red'
     end as color;
 
-select  'card' as component;
+select  'card' as component,
+    2 as columns;
 select 
     'Last date reported:' as title,
     case
@@ -47,4 +48,13 @@ select
     (select count(*) from tickets where ISCLOSED is TRUE) as description,
     'number' as icon,
     'green' as color;
-
+select
+    'Total hours reported from last week' as title,
+    (select 
+        SUM(
+            strftime('%s', EXITTIME) - strftime('%s', ARRIVALTIME)
+            ) / 3600.0
+         FROM REPORTS
+        WHERE DATEOFREPORT >= DATE('now', '-7 days')
+    ) as description;
+    
